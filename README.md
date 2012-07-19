@@ -18,6 +18,10 @@ Image for the haters:
 
 Small retina display images are fucking huge.
 
+###Example With Curl
+
+    ⚡ curl https://github.com/igorgue.json | pjson
+
 ###Install
 
 Just copy and paste this:
@@ -32,7 +36,7 @@ For zsh bros, though, they might already know this:
 
     ⚡ echo 'export PATH=$HOME/bin:$PATH' >> ~/.zshrc
 
-###mfw I did this project
+###MFW I did This Project
 
 ![image](http://alltheragefaces.com/img/faces/large/surprised-omg-l.png)
 
