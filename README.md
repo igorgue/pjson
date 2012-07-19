@@ -34,7 +34,7 @@ or, if you run as root:
 
 And copy and paste this:
 
-    curl https://raw.github.com/igorgue/pjson/master/pjson > ~/bin/pjson
+    curl https://raw.github.com/igorgue/pjson/master/pjson > ~/bin/pjson && chmod +x ~/bin/pjson
 
 If it doesn't work run this:
 
