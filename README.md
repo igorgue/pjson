@@ -24,7 +24,15 @@ Small retina display images are fucking huge.
 
 ###Install
 
-Just copy and paste this:
+Install `pygments`:
+
+    pip install pygments
+
+or, if you run as root:
+
+    sudo pip install pygments
+
+And copy and paste this:
 
     curl https://raw.github.com/igorgue/pjson/master/pjson > ~/bin/pjson
 
