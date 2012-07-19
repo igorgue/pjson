@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Pjson by igorgue</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Pjson</h1>
+        <h2>Like python -mjson.tool but with moar colors (and less conf)</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/igorgue/pjson/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/igorgue/pjson/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/igorgue/pjson" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h3>Usage</h3>
+
+<pre><code>⚡ echo '{"json":"obj"}' | pjson
+{
+  "json": "obj"
+}
+</code></pre>
+
+<h3>Looks Like This</h3>
+
+<p>Image for the haters:</p>
+
+<p><img src="http://f.cl.ly/items/3R1M3b2j2o2v1z0z2U0E/Screen%20Shot%202012-07-19%20at%206.58.54%20PM.png" alt="image"></p>
+
+<p>Small retina display images are fucking huge.</p>
+
+<h3>Example With Curl</h3>
+
+<pre><code>⚡ curl https://github.com/igorgue.json | pjson
+</code></pre>
+
+<h3>Install</h3>
+
+<p>Install <code>pygments</code>:</p>
+
+<pre><code>pip install pygments
+</code></pre>
+
+<p>or, if you run as root:</p>
+
+<pre><code>sudo pip install pygments
+</code></pre>
+
+<p>And copy and paste this:</p>
+
+<pre><code>curl https://raw.github.com/igorgue/pjson/master/pjson &gt; ~/bin/pjson &amp;&amp; chmod +x ~/bin/pjson
+</code></pre>
+
+<p>If it doesn't work run this:</p>
+
+<pre><code>⚡ echo 'export PATH=$HOME/bin:$PATH' &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>For zsh bros, though, they might already know this:</p>
+
+<pre><code>⚡ echo 'export PATH=$HOME/bin:$PATH' &gt;&gt; ~/.zshrc
+</code></pre>
+
+<h3>MFW I did This Project</h3>
+
+<p><img src="http://alltheragefaces.com/img/faces/large/surprised-omg-l.png" alt="image"></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
