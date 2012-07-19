@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+"""
+Command-line tool to validate and pretty-print JSON.
+
+Based on `python -mjson.tool` but without the crap.
+
+Usage::
+
+    $ echo '{"json":"obj"}' | pjson
+    {
+        "json": "obj"
+    }
+    $ echo '{ 1.2:3.4}' | pjson
+    Expecting property name: line 1 column 2 (char 2)
+
+
+Author: Igor Guerrero <igfgt1@gmail.com>, 2012
+"""
+
+import json
+import sys
+
+from StringIO import StringIO
+from pygments import highlight
+from pygments.formatters import TerminalFormatter
+from pygments.lexers import JSONLexer
+
+def format_json_code(code):
+    """
+    Parses json code and formats it
+    """
+    obj = json.loads(code)
+    output = StringIO()
+
+    json.dump(obj, output, sort_keys=True, indent=2)
+
+    return output.getvalue()
+
+def color_yo_shit(code):
+    """
+    Calls pygments.highlight to color yo shit
+    """
+    return highlight(code, JSONLexer(), TerminalFormatter())
+
+if __name__ == '__main__':
+    code = format_json_code(sys.stdin.read())
+    print color_yo_shit(code)
+
