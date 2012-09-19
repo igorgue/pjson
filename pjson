@@ -44,6 +44,7 @@ def color_yo_shit(code):
     return highlight(code, JSONLexer(), TerminalFormatter())
 
 if __name__ == '__main__':
-    code = format_json_code(sys.stdin.read())
-    print color_yo_shit(code)
+    for line in sys.stdin:
+        code = format_json_code(line)
+        print color_yo_shit(code)
 
