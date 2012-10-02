@@ -46,5 +46,8 @@ def color_yo_shit(code):
 if __name__ == '__main__':
     for line in sys.stdin:
         code = format_json_code(line)
-        print color_yo_shit(code)
+        if sys.stdout.isatty():
+            print color_yo_shit(code)
+        else:
+            print code
 
