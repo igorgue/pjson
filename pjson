@@ -21,7 +21,8 @@ Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 import json
 import sys
 
-from StringIO import StringIO
+try: from StringIO import StringIO
+except ImportError: from io import StringIO
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import JSONLexer
@@ -47,7 +48,7 @@ if __name__ == '__main__':
     for line in sys.stdin:
         code = format_json_code(line)
         if sys.stdout.isatty():
-            print color_yo_shit(code)
+            print(color_yo_shit(code))
         else:
-            print code
+            print(code)
 
