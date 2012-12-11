@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Command-line tool to validate and pretty-print JSON.
+Command-line tool to validate and pretty-print JSON and XML.
 
 Based on `python -mjson.tool` but without the crap.
 
@@ -20,35 +20,50 @@ Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 
 import json
 import sys
-
-try: from StringIO import StringIO
-except ImportError: from io import StringIO
+if sys.version_info[0] == 2:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
-from pygments.lexers import JSONLexer
+from pygments.lexers import JSONLexer, XmlLexer
+import xml.dom.minidom
+import argparse
 
-def format_json_code(code):
+def format_code(data, is_xml=False):
     """
-    Parses json code and formats it
+    Parses data and formats it
     """
-    obj = json.loads(code)
-    output = StringIO()
+    if is_xml:
+        return xml.dom.minidom.parseString(data).toprettyxml()
+    else:
+        obj = json.loads(data)
+        output = StringIO()
 
-    json.dump(obj, output, sort_keys=True, indent=2)
+        json.dump(obj, output, sort_keys=True, indent=2)
+        return output.getvalue()
 
-    return output.getvalue()
-
-def color_yo_shit(code):
+def color_yo_shit(code, lexer):
     """
     Calls pygments.highlight to color yo shit
     """
-    return highlight(code, JSONLexer(), TerminalFormatter())
+    return highlight(code, lexer, TerminalFormatter())
 
 if __name__ == '__main__':
-    for line in sys.stdin:
-        code = format_json_code(line)
-        if sys.stdout.isatty():
-            print(color_yo_shit(code))
-        else:
-            print(code)
 
+    parser = argparse.ArgumentParser(description="Command-line tool to validate and pretty-print JSON and XML")
+    parser.add_argument("-x", action="store_true", help="Data is XML")
+    parser.add_argument("-b", action="store_true", help="Read data in chunks")
+    args = parser.parse_args()
+
+    if args.x and args.b:
+        sys.stderr.write("-x and -b cannot be used simultaneously\n")
+        exit(1)
+    elif args.b:
+        for line in sys.stdin:
+            print(color_yo_shit(format_code(line), JSONLexer()))
+    else:
+        data = sys.stdin.read()
+        if sys.stdout.isatty():
+            data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JSONLexer())
+        print(data)
