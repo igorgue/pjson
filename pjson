@@ -50,7 +50,6 @@ def color_yo_shit(code, lexer):
     return highlight(code, lexer, TerminalFormatter())
 
 if __name__ == '__main__':
-
     parser = argparse.ArgumentParser(description="Command-line tool to validate and pretty-print JSON and XML")
     parser.add_argument("-x", action="store_true", help="Data is XML")
     parser.add_argument("-b", action="store_true", help="Read data in chunks")
