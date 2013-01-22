@@ -18,7 +18,7 @@ Usage::
 Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 """
 
-__version__ = '0.2'
+__version__ = '0.3'
 
 import json
 import sys
