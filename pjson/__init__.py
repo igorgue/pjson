@@ -18,6 +18,8 @@ Usage::
 Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 """
 
+__version__ = '0.1'
+
 import json
 import sys
 if sys.version_info[0] == 2:
@@ -49,7 +51,10 @@ def color_yo_shit(code, lexer):
     """
     return highlight(code, lexer, TerminalFormatter())
 
-if __name__ == '__main__':
+def main():
+    """
+    Main function to excecute everything in order
+    """
     parser = argparse.ArgumentParser(description="Command-line tool to validate and pretty-print JSON and XML")
     parser.add_argument("-x", action="store_true", help="Data is XML")
     parser.add_argument("-b", action="store_true", help="Read data in chunks")
@@ -66,3 +71,6 @@ if __name__ == '__main__':
         if sys.stdout.isatty():
             data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JSONLexer())
         print(data)
+
+if __name__ == '__main__':
+    main()

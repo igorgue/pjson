@@ -26,25 +26,8 @@ Small retina display images are fucking huge.
 
 Install `pygments`:
 
-    pip install pygments
-
-or, if you run as root:
-
-    sudo pip install pygments
-
-And copy and paste this:
-
-    curl https://raw.github.com/igorgue/pjson/master/pjson > ~/bin/pjson && chmod +x ~/bin/pjson
-
-If it doesn't work run this:
-
-    ⚡ echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
-
-For zsh bros, though, they might already know this:
-
-    ⚡ echo 'export PATH=$HOME/bin:$PATH' >> ~/.zshrc
+    ⚡ pip install pjson
 
 ###MFW I did This Project
 
 ![image](http://alltheragefaces.com/img/faces/large/surprised-omg-l.png)
-
