@@ -17,8 +17,12 @@ setup(
     license='MIT',
     keywords='json xml',
     url='http://igorgue.com/pjson',
-    version='0.1',
+    version='0.2',
     packages=find_packages(),
+    package_data = {
+        # If any package contains *.txt or *.md files, include them:
+        '': ['*.md', 'LICENSE'],
+    },
     long_description=read('README.md'),
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
