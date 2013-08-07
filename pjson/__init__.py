@@ -69,7 +69,10 @@ def main():
     else:
         data = sys.stdin.read()
         if sys.stdout.isatty():
-            data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JSONLexer())
+            try:
+                data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JSONLexer())
+            except ValueError as e:
+                print e
         print(data)
 
 if __name__ == '__main__':
