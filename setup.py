@@ -28,6 +28,6 @@ setup(
         'console_scripts': ['pjson = pjson:main']
     },
     install_requires=[
-        'Pygments==1.5'
+        'Pygments==1.6'
     ]
 )
