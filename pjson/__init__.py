@@ -28,7 +28,7 @@ else:
     from io import StringIO
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
-from pygments.lexers import JSONLexer, XmlLexer
+from pygments.lexers import JsonLexer, XmlLexer
 import xml.dom.minidom
 import argparse
 
@@ -65,14 +65,14 @@ def main():
         exit(1)
     elif args.b:
         for line in sys.stdin:
-            print(color_yo_shit(format_code(line), JSONLexer()))
+            print(color_yo_shit(format_code(line), JsonLexer()))
     else:
         data = sys.stdin.read()
         if sys.stdout.isatty():
             try:
-                data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JSONLexer())
+                data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JsonLexer())
             except ValueError as e:
-                print e
+                print (e)
         print(data)
 
 if __name__ == '__main__':
