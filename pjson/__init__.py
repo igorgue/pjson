@@ -18,8 +18,7 @@ Usage::
 Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 """
 
-__version__ = '0.4'
-
+from __future__ import print_function
 import json
 import sys
 if sys.version_info[0] == 2:
@@ -31,6 +30,8 @@ from pygments.formatters import TerminalFormatter
 from pygments.lexers import JsonLexer, XmlLexer
 import xml.dom.minidom
 import argparse
+
+__version__ = '0.4'
 
 def format_code(data, is_xml=False):
     """
@@ -70,10 +71,11 @@ def main():
         data = sys.stdin.read()
         if sys.stdout.isatty():
             try:
-                data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JsonLexer())
+                print(color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JsonLexer()), end='')
             except ValueError as e:
                 print (e)
-        print(data)
+        else:
+            print(data)
 
 if __name__ == '__main__':
     main()
