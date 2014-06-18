@@ -82,7 +82,13 @@ def main():
                 text = color_yo_shit(text, XmlLexer() if args.x else JsonLexer()).rstrip('\r\n')
             print(text)
         except ValueError as e:
-            print(e)
+            message = str(e)
+            if colorize:
+                red = '\x1b[31;m'
+                reset_colors = '\x1b[0;m'
+                message = ''.join([red, message, reset_colors])
+            sys.stderr.write(message+'\n')
+            exit(1)
 
 if __name__ == '__main__':
     main()
