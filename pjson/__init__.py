@@ -18,8 +18,6 @@ Usage::
 Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 """
 
-__version__ = '0.4'
-
 import json
 import sys
 if sys.version_info[0] == 2:
@@ -31,6 +29,8 @@ from pygments.formatters import TerminalFormatter
 from pygments.lexers import JsonLexer, XmlLexer
 import xml.dom.minidom
 import argparse
+
+__version__ = '0.4'
 
 def format_code(data, is_xml=False):
     """
@@ -53,27 +53,45 @@ def color_yo_shit(code, lexer):
 
 def main():
     """
-    Main function to excecute everything in order
+    Main function to execute everything in order
     """
     parser = argparse.ArgumentParser(description="Command-line tool to validate and pretty-print JSON and XML")
     parser.add_argument("-x", action="store_true", help="Data is XML")
     parser.add_argument("-b", action="store_true", help="Read data in chunks")
+    parser.add_argument("-t", action="store_true", help="Colorize regardless if output is a terminal")
     args = parser.parse_args()
 
     if args.x and args.b:
         sys.stderr.write("-x and -b cannot be used simultaneously\n")
+        parser.print_usage(sys.stderr)
         exit(1)
-    elif args.b:
+
+    colorize = args.t or sys.stdout.isatty()
+
+    if args.b:
         for line in sys.stdin:
-            print(color_yo_shit(format_code(line), JsonLexer()))
+            text = format_code(line)
+            if colorize:
+                text = color_yo_shit(text, JsonLexer())
+            print(text)
     else:
         data = sys.stdin.read()
-        if sys.stdout.isatty():
-            try:
-                data = color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JsonLexer())
-            except ValueError as e:
-                print (e)
-        print(data)
+        try:
+            text = format_code(data, args.x)
+            if colorize:
+                text = color_yo_shit(text, XmlLexer() if args.x else JsonLexer()).rstrip('\r\n')
+            print(text)
+        except ValueError as e:
+            message = str(e)
+            if colorize:
+                red = '\x1b[31;m'
+                reset_colors = '\x1b[0;m'
+                message = ''.join([red, message, reset_colors])
+            sys.stderr.write(message+'\n')
+            exit(1)
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        exit(1)
