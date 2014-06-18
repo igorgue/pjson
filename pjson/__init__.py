@@ -54,7 +54,7 @@ def color_yo_shit(code, lexer):
 
 def main():
     """
-    Main function to excecute everything in order
+    Main function to execute everything in order
     """
     parser = argparse.ArgumentParser(description="Command-line tool to validate and pretty-print JSON and XML")
     parser.add_argument("-x", action="store_true", help="Data is XML")
