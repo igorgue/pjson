@@ -18,7 +18,6 @@ Usage::
 Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 """
 
-from __future__ import print_function
 import json
 import sys
 if sys.version_info[0] == 2:
@@ -65,18 +64,24 @@ def main():
     if args.x and args.b:
         sys.stderr.write("-x and -b cannot be used simultaneously\n")
         exit(1)
-    elif args.b:
+
+    colorize = args.t or sys.stdout.isatty()
+
+    if args.b:
         for line in sys.stdin:
-            print(color_yo_shit(format_code(line), JsonLexer()))
+            text = format_code(line)
+            if colorize:
+                text = color_yo_shit(text, JsonLexer())
+            print(text)
     else:
         data = sys.stdin.read()
-        if sys.stdout.isatty() or args.t:
-            try:
-                print(color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JsonLexer()), end='')
-            except ValueError as e:
-                print (e)
-        else:
-            print(data)
+        try:
+            text = format_code(data, args.x)
+            if colorize:
+                text = color_yo_shit(text, XmlLexer() if args.x else JsonLexer()).rstrip('\r\n')
+            print(text)
+        except ValueError as e:
+            print(e)
 
 if __name__ == '__main__':
     main()
