@@ -63,6 +63,7 @@ def main():
 
     if args.x and args.b:
         sys.stderr.write("-x and -b cannot be used simultaneously\n")
+        parser.print_usage(sys.stderr)
         exit(1)
 
     colorize = args.t or sys.stdout.isatty()
