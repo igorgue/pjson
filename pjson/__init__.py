@@ -59,6 +59,7 @@ def main():
     parser = argparse.ArgumentParser(description="Command-line tool to validate and pretty-print JSON and XML")
     parser.add_argument("-x", action="store_true", help="Data is XML")
     parser.add_argument("-b", action="store_true", help="Read data in chunks")
+    parser.add_argument("-t", action="store_true", help="Colorize regardless if output is a terminal")
     args = parser.parse_args()
 
     if args.x and args.b:
@@ -69,7 +70,7 @@ def main():
             print(color_yo_shit(format_code(line), JsonLexer()))
     else:
         data = sys.stdin.read()
-        if sys.stdout.isatty():
+        if sys.stdout.isatty() or args.t:
             try:
                 print(color_yo_shit(format_code(data, args.x), XmlLexer() if args.x else JsonLexer()), end='')
             except ValueError as e:
