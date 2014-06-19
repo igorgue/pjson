@@ -28,6 +28,7 @@ setup(
         'console_scripts': ['pjson = pjson:main']
     },
     install_requires=[
-        'Pygments==1.6'
+        'Pygments==1.6',
+        'xmlformatter==0.1.1',
     ]
 )
