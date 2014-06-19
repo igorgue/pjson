@@ -1,6 +1,5 @@
-import os
-
 from setuptools import setup, find_packages
+from pjson import __version__
 
 setup(
     name='pjson',
@@ -10,7 +9,7 @@ setup(
     license='MIT',
     keywords='json xml',
     url='http://igorgue.com/pjson',
-    version='0.4',
+    version=__version__,
     packages=find_packages(),
     package_data = {
         # If any package contains *.txt or *.md files, include them:
