@@ -27,7 +27,8 @@ else:
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from pygments.lexers import JsonLexer, XmlLexer
-import xml.dom.minidom
+from xml.etree import ElementTree as ET
+import xmlformatter
 import argparse
 
 __version__ = '0.4'
@@ -37,7 +38,9 @@ def format_code(data, is_xml=False):
     Parses data and formats it
     """
     if is_xml:
-        return xml.dom.minidom.parseString(data).toprettyxml()
+        ET.fromstring(data)  # Make sure XML is valid
+        formatter = xmlformatter.Formatter(indent=2, indent_char=' ', encoding_output='UTF-8', preserve=['literal'])
+        return formatter.format_string(data)
     else:
         obj = json.loads(data)
         output = StringIO()
@@ -81,7 +84,7 @@ def main():
             if colorize:
                 text = color_yo_shit(text, XmlLexer() if args.x else JsonLexer()).rstrip('\r\n')
             print(text)
-        except ValueError as e:
+        except (ValueError, ET.ParseError) as e:
             message = str(e)
             if colorize:
                 red = '\x1b[31;m'
