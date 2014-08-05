@@ -31,7 +31,7 @@ from xml.etree import ElementTree as ET
 import xmlformatter
 import argparse
 
-__version__ = '0.4'
+__version__ = '0.5'
 
 def format_code(data, is_xml=False):
     """
