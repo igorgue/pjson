@@ -18,50 +18,27 @@ Usage::
 Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 """
 
-import json
 import sys
-if sys.version_info[0] == 2:
-    from StringIO import StringIO
-else:
-    from io import StringIO
-from pygments import highlight
-from pygments.formatters import TerminalFormatter
-from pygments.lexers import JsonLexer, XmlLexer
+from sys import exit
 from xml.etree import ElementTree as ET
-import xmlformatter
-import argparse
 
 __version__ = '0.5'
 
-def format_code(data, is_xml=False):
-    """
-    Parses data and formats it
-    """
-    if is_xml:
-        ET.fromstring(data)  # Make sure XML is valid
-        formatter = xmlformatter.Formatter(indent=2, indent_char=' ', encoding_output='UTF-8', preserve=['literal'])
-        return formatter.format_string(data)
-    else:
-        obj = json.loads(data)
-        output = StringIO()
-
-        json.dump(obj, output, sort_keys=True, indent=2)
-        return output.getvalue()
-
-def color_yo_shit(code, lexer):
-    """
-    Calls pygments.highlight to color yo shit
-    """
-    return highlight(code, lexer, TerminalFormatter())
 
 def main():
     """
     Main function to execute everything in order
     """
-    parser = argparse.ArgumentParser(description="Command-line tool to validate and pretty-print JSON and XML")
+    import argparse
+    from pygments.lexers import JsonLexer, XmlLexer
+    from pjson.core import format_code, color_yo_shit
+
+    parser = argparse.ArgumentParser(description="Command-line tool to "
+                                     "validate and pretty-print JSON and XML")
     parser.add_argument("-x", action="store_true", help="Data is XML")
     parser.add_argument("-b", action="store_true", help="Read data in chunks")
-    parser.add_argument("-t", action="store_true", help="Colorize regardless if output is a terminal")
+    parser.add_argument("-t", action="store_true", help="Colorize regardless "
+                        "if output is a terminal")
     args = parser.parse_args()
 
     if args.x and args.b:
