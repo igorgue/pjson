@@ -19,13 +19,14 @@ Author: Igor Guerrero <igfgt1@gmail.com>, 2012
 """
 
 import sys
+import signal
 from sys import exit
 from xml.etree import ElementTree as ET
 
 __version__ = '0.6'
 
 
-def main():
+def _main():
     """
     Main function to execute everything in order
     """
@@ -70,8 +71,20 @@ def main():
             sys.stderr.write(message+'\n')
             exit(1)
 
-if __name__ == '__main__':
+def main():
+    """
+    Wrapper main function that handles broken pipes and keyboard interrupts.
+    """
+    # Lifted from pep8.py located here:
+    # https://github.com/jcrocholl/pep8/blob/1.6.2/pep8.py#L2095-L2099
+    # Many thanks!
+    # Handle "Broken pipe" gracefully
     try:
-        main()
+        signal.signal(signal.SIGPIPE, lambda signum, frame: sys.exit(1))
+    except AttributeError:
+        pass    # not supported on Windows
+
+    try:
+        _main()
     except KeyboardInterrupt:
         exit(1)
