@@ -1,9 +1,5 @@
 import json
 import sys
-if sys.version_info[0] == 2:
-    from StringIO import StringIO
-else:
-    from io import StringIO
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from xml.etree import ElementTree as ET
@@ -22,14 +18,12 @@ def format_code(data, is_xml=False):
         return formatter.format_string(data)
     else:
         obj = json.loads(data)
-        output = StringIO()
 
-        json.dump(obj, output, sort_keys=True, indent=2)
-        return output.getvalue()
+        return json.dumps(obj, sort_keys=True, indent=2, ensure_ascii=False).encode('UTF-8')
 
 
 def color_yo_shit(code, lexer):
     """
     Calls pygments.highlight to color yo shit
     """
-    return highlight(code, lexer, TerminalFormatter())
+    return highlight(unicode(code, 'UTF-8'), lexer, TerminalFormatter())
