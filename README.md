@@ -20,7 +20,7 @@ Small retina display images are fucking huge.
 
 ###Example With Curl
 
-    ⚡ curl https://github.com/igorgue.json | pjson
+    ⚡ curl https://api.github.com/users/igorgue | pjson
 
 ###Install
 
