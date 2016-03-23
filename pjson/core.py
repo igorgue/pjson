@@ -26,4 +26,9 @@ def color_yo_shit(code, lexer):
     """
     Calls pygments.highlight to color yo shit
     """
-    return highlight(unicode(code, 'UTF-8'), lexer, TerminalFormatter())
+    if sys.version_info >= (3, 0):
+        text = str(code, 'UTF-8')
+    else:
+        text = unicode(code, 'UTF-8')
+
+    return highlight(text, lexer, TerminalFormatter())
