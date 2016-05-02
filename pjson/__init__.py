@@ -23,7 +23,7 @@ import signal
 from sys import exit
 from xml.etree import ElementTree as ET
 
-__version__ = '0.9'
+__version__ = '1.0'
 
 
 def _main():
