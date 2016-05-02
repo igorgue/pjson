@@ -20,14 +20,14 @@ setup(
         "Intended Audience :: Developers",
         "Natural Language :: English",
         "Operating System :: POSIX",
-        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python",
         "License :: OSI Approved :: MIT License",
     ],
     entry_points={
         'console_scripts': ['pjson = pjson:main']
     },
     install_requires=[
-        'Pygments==1.6',
+        'Pygments>=1.6',
         'xmlformatter==0.1.1',
     ]
 )
