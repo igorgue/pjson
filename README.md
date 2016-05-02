@@ -3,14 +3,14 @@ pjson
 
 Like `python -mjson.tool` but with moar colors (and less conf)
 
-###Usage
+### Usage
 
     ⚡ echo '{"json":"obj"}' | pjson
     {
       "json": "obj"
     }
 
-###Looks Like This
+### Looks Like This
 
 Image for the haters:
 
@@ -18,16 +18,16 @@ Image for the haters:
 
 Small retina display images are fucking huge.
 
-###Example With Curl
+### Example With Curl
 
     ⚡ curl https://api.github.com/users/igorgue | pjson
 
-###Install
+### Install
 
-Install `pygments`:
+Install `pygments` and `xmlformatter`:
 
-    ⚡ pip install pjson
+    ⚡ pip install pjson xmlformatter
 
-###MFW I did This Project
+### MFW I did This Project
 
-![image](http://alltheragefaces.com/img/faces/large/surprised-omg-l.png)
+![image](http://www.ragefacecomics.com/faces/large/surprised-omg-l.png)
