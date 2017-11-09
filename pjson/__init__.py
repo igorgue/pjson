@@ -23,7 +23,7 @@ import signal
 from sys import exit
 from xml.etree import ElementTree as ET
 
-__version__ = '1.0'
+__version__ = '1.1'
 
 
 def _main():
@@ -40,10 +40,11 @@ def _main():
     parser.add_argument("-b", action="store_true", help="Read data in chunks")
     parser.add_argument("-t", action="store_true", help="Colorize regardless "
                         "if output is a terminal")
+    parser.add_argument("-s", action="store_true", help="Sort keys")
     args = parser.parse_args()
 
-    if args.x and args.b:
-        sys.stderr.write("-x and -b cannot be used simultaneously\n")
+    if args.x and (args.b or args.s):
+        sys.stderr.write("-x cannot be used with -b or -s\n")
         parser.print_usage(sys.stderr)
         exit(1)
 
@@ -58,7 +59,7 @@ def _main():
     else:
         data = sys.stdin.read()
         try:
-            text = format_code(data, args.x)
+            text = format_code(data, sort_keys=args.s, is_xml=args.x)
             if colorize:
                 text = color_yo_shit(text, XmlLexer() if args.x else JsonLexer()).rstrip('\r\n')
             print(text)
