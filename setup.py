@@ -5,7 +5,9 @@ setup(
     name='pjson',
     author='Igor Guerrero',
     author_email='igfgt1@gmail.com',
-    description=('Command-line tool to validate and pretty-print JSON and XML.'),
+    description=(
+        'Command-line tool to validate and pretty-print JSON and XML.'
+    ),
     license='MIT',
     keywords='json xml',
     url='http://igorgue.com/pjson',

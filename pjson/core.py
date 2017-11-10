@@ -1,12 +1,13 @@
 import json
 import sys
+from collections import OrderedDict
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
 from xml.etree import ElementTree as ET
 import xmlformatter
 
 
-def format_code(data, is_xml=False):
+def format_code(data, is_xml=False, sort_keys=False):
     """
     Parses data and formats it
     """
@@ -17,9 +18,11 @@ def format_code(data, is_xml=False):
                                            preserve=['literal'])
         return formatter.format_string(data)
     else:
-        obj = json.loads(data)
+        obj = json.loads(data, object_pairs_hook=OrderedDict)
 
-        return json.dumps(obj, sort_keys=True, indent=2, ensure_ascii=False).encode('UTF-8')
+        return json.dumps(
+            obj, sort_keys=sort_keys, indent=2, ensure_ascii=False
+        ).encode('UTF-8')
 
 
 def color_yo_shit(code, lexer):
