@@ -28,3 +28,7 @@ pip-log.txt
 
 # PyCharm
 .idea/
+
+# Python project
+setup.cfg
+.ropeproject
