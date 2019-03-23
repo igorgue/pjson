@@ -30,4 +30,4 @@ Install `pygments` and `xmlformatter`:
 
 ### MFW I did This Project
 
-![image](http://www.ragefacecomics.com/faces/large/surprised-omg-l.png)
+![image](http://1.bp.blogspot.com/-pPlP3YNu_8E/U5lOw22806I/AAAAAAAAIwA/gbpKuF4RerA/s1600/puking_rainbows_guy_in_hd_by_lemmino-d6026ug.png)
