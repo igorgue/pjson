@@ -5,10 +5,15 @@ JSON formatting but with moar colors (and less conf)
 
 ### Usage
 
-    ⚡ echo '{"json":"obj"}' | pjson
-    {
-      "json": "obj"
-    }
+```sh
+echo '{"json":"obj"}' | pjson
+```
+
+```json
+{
+  "json": "obj"
+}
+```
 
 ### Looks Like This
 
@@ -20,13 +25,17 @@ Small retina display images are fucking huge.
 
 ### Example With Curl
 
-    ⚡ curl https://api.github.com/users/igorgue | pjson
+```sh
+curl https://api.github.com/users/igorgue | pjson
+```
 
 ### Install
 
 Install `pygments` and `xmlformatter`:
 
-    ⚡ pip install pjson xmlformatter
+```sh
+pip install pjson xmlformatter
+```
 
 ### MFW I did This Project
 
