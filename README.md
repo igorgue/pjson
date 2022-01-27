@@ -14,7 +14,7 @@ JSON formatting but with moar colors (and less conf)
 
 Image for the haters:
 
-![image](http://f.cl.ly/items/3R1M3b2j2o2v1z0z2U0E/Screen%20Shot%202012-07-19%20at%206.58.54%20PM.png)
+![Screenshot-20220126190421-653x680](https://user-images.githubusercontent.com/7014/151272641-de8dfbb9-7f49-4f59-89f2-cc4c1b6afb55.png)
 
 Small retina display images are fucking huge.
 
