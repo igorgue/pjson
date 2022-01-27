@@ -1,7 +1,7 @@
 pjson
 =====
 
-Like `python -mjson.tool` but with moar colors (and less conf)
+JSON formatting but with moar colors (and less conf)
 
 ### Usage
 
